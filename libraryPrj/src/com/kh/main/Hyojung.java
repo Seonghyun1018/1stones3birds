@@ -1,10 +1,8 @@
-package hyoTest;
+package com.kh.main;
 
-public class Main {
-
+public class Hyojung {
+	
 	public static void main(String[] args) {
-		System.out.println("hello world");
 		System.out.println("효정 push test");
 	}
-
 }
