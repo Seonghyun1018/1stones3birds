@@ -3,6 +3,6 @@ package com.kh.main;
 public class JunHyeok {
 	
 	public static void main(String[] args) {
-		System.out.println("ÁØÇõ push test");
+		System.out.println("ì¤€í˜ push test");
 	}
 }
