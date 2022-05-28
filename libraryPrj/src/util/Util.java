@@ -10,6 +10,7 @@ public class Util {
 		int n = sc.nextInt();
 		sc.nextLine();
 		return n;
+		
 	}
 	
 
