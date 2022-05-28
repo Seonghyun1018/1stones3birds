@@ -7,22 +7,22 @@ import java.sql.SQLException;
 import oracledb.OracleDB;
 import util.Util;
 
-public class Member {
+public class SampleMember {
    
    public static int loginUserNo;
 
-//·Î±×ÀÎ
+//ï¿½Î±ï¿½ï¿½ï¿½
    public boolean login() {
-      System.out.println("=====·Î±×ÀÎ=====");
-      System.out.print("¾ÆÀÌµð : ");
+      System.out.println("=====ï¿½Î±ï¿½ï¿½ï¿½=====");
+      System.out.print("ï¿½ï¿½ï¿½Ìµï¿½ : ");
       String id = Util.sc.nextLine();
-      System.out.print("ÆÐ½º¿öµå : ");
+      System.out.print("ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ : ");
       String pwd = Util.sc.nextLine();
       
       
-      //µðºñ ¿¬°á ¾ò±â
+      //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
       Connection conn = OracleDB.getOracleConnection();
-      //ÇØ´ç ¾ÆÀÌµð¿¡ ¸Â´Â ÆÐ½º¿öµå µðºñ¿¡¼­ Á¶È¸ÇÏ±â
+      //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Â´ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ñ¿¡¼ï¿½ ï¿½ï¿½È¸ï¿½Ï±ï¿½
       String sql = "SELECT PWD FROM MEMBER WHERE ID = ?";
       PreparedStatement pstmt = null;
       ResultSet rs = null;
@@ -35,52 +35,52 @@ public class Member {
             String dbPwd = rs.getString("pwd"); 
             if(dbPwd.equalsIgnoreCase(pwd)) {
                
-               System.out.println("·Î±×ÀÎ ¼º°ø !!!");
+               System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ !!!");
                return true;
             }
          }
          
       } catch (SQLException e) {
-         System.out.println("SQL ¿¹¿Ü ¹ß»ý !!!");
+         System.out.println("SQL ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ !!!");
       }finally {
          OracleDB.close(conn);
          OracleDB.close(pstmt);
          OracleDB.close(rs);
       }
       
-      //µðºñ¿¡¼­ Á¶È¸ÇÑ ÆÐ½º¿öµå°¡ ÀÏÄ¡ÇÏ´ÂÁö È®ÀÎ
+      //ï¿½ï¿½ñ¿¡¼ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½å°¡ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
       
-      System.out.println("·Î±×ÀÎ ½ÇÆÐ ...");
+      System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ...");
       return false;
    }
    
-   //È¸¿ø°¡ÀÔ
+   //È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
    /*
-    * ¾ÆÀÌµð, ºñ¹ø, ´Ð³×ÀÓ ÀÔ·Â¹Þ±â
-    * ¾ÆÀÌµð Áßº¹ °Ë»ç
-    * ºñ¹Ð¹øÈ£ À¯È¿¼º °Ë»ç (8±ÛÀÚ ÀÌ»óÀÎÁö ,,, )
-    * µðºñ¿¡ ÀúÀå
+    * ï¿½ï¿½ï¿½Ìµï¿½, ï¿½ï¿½ï¿½, ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½Ô·Â¹Þ±ï¿½
+    * ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½ ï¿½Ë»ï¿½
+    * ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½È¿ï¿½ï¿½ ï¿½Ë»ï¿½ (8ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ï¿½ï¿½ ,,, )
+    * ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     */
    public boolean join() {
-      System.out.println("=====È¸¿ø°¡ÀÔ=====");
-      System.out.print("¾ÆÀÌµð : ");
+      System.out.println("=====È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½=====");
+      System.out.print("ï¿½ï¿½ï¿½Ìµï¿½ : ");
       String id = Util.sc.nextLine();
-      System.out.print("ºñ¹Ð¹øÈ£ : ");
+      System.out.print("ï¿½ï¿½Ð¹ï¿½È£ : ");
       String pwd = Util.sc.nextLine();
-      System.out.print("´Ð³×ÀÓ : ");
+      System.out.print("ï¿½Ð³ï¿½ï¿½ï¿½ : ");
       String nick = Util.sc.nextLine();
       
-      //ºñ¹ø À¯È¿¼º °Ë»ç
+      //ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ ï¿½Ë»ï¿½
       if(pwd.length() < 4) {
-         // È¸¿ø°¡ÀÔ ½ÇÆÐ
-         System.out.println("ºñ¹Ð¹øÈ£´Â 4±ÛÀÚ ÀÌ»ó ÀÌ¾î¾ß ÇÕ´Ï´Ù.");
+         // È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+         System.out.println("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ 4ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½Ì¾ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.");
          return false;
       }
       
-      //¾ÆÀÌµð Áßº¹ °Ë»ç
-      //1. µðºñ Á¢¼Ó
+      //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½ ï¿½Ë»ï¿½
+      //1. ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
       Connection conn = OracleDB.getOracleConnection();
-      //2. µðºñ¿¡¼­ ÇöÀç ¾ÆÀÌµð¿Í ÀÏÄ¡ÇÏ´Â ¾ÆÀÌµð Á¶È¸
+      //2. ï¿½ï¿½ñ¿¡¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½È¸
       try {
          String sql = "SELECT * FROM MEMBER WHERE ID = ?";
 //         Statement stmtDup = conn.createStatement();
@@ -90,13 +90,13 @@ public class Member {
          ResultSet rs = pstmt.executeQuery();
          
          if(rs.next()) {
-            //Áßº¹µÈ ¾ÆÀÌµð.. È¸¿ø°¡ÀÔ ½ÇÆÐ
-            System.out.println("¾ÆÀÌµð Áßº¹!!!");
+            //ï¿½ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½.. È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            System.out.println("ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½!!!");
             return false;
          }
          
-         //µðºñ¿¡ µ¥ÀÌÅÍ ÀúÀå
-         //3. È¸¿ø°¡ÀÔ¼º°ø? µðºñ ÀúÀå
+         //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+         //3. È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½? ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
          String sqlInsert 
             = "INSERT INTO MEMBER(NO,ID,PWD,NICK) "
                   + "VALUES(MEMBER_NO_SEQ.NEXTVAL,?,?,?)";
@@ -110,7 +110,7 @@ public class Member {
          
          
          if(result == 1) {
-            System.out.println("È¸¿ø °¡ÀÔ ¼º°ø !!!");
+            System.out.println("È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ !!!");
             return true;
          }
          
@@ -118,7 +118,7 @@ public class Member {
          e.printStackTrace();
       }
       
-      System.out.println("È¸¿ø°¡ÀÔ ½ÇÆÐ...");
+      System.out.println("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...");
       return false;
    }
    

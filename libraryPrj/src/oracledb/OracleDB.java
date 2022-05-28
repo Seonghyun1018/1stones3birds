@@ -16,7 +16,7 @@ public class OracleDB {
 		
 		
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";	//ip , port 蹂몄씤�뿉 留욊쾶
+		String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";	//ip , port 정확하게 입력
 		String id = "C##KH";
 		String pwd = "KH";
 		
