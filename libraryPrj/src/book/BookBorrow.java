@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import count.Count;
@@ -15,6 +16,31 @@ import util.Util;
 public class BookBorrow {
 	public static int loginNo;
 	Count ct = new Count();
+	
+	public void bookCheck() {
+		Connection conn = OracleDB.getOracleConnection();
+		String sql = "SELECT CANTBORROW, BORROWABLE FROM MEMBER WHERE MNO = ?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, User.loginNo);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				Timestamp cantborrow = rs.getTimestamp("CANTBORROW");
+				int borrowable =rs.getInt("BORROWABLE");
+				if(cantborrow!=null || borrowable == 0) {
+					System.out.println("현재 대출이 불가능한 상태 입니다");
+				}else {
+				System.out.println("현재 대출 가능한 상태 입니다");
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	// 도서 대출 -- 대출 테이블, 대출 시퀀스 테이블 작성
 	
@@ -35,7 +61,7 @@ public class BookBorrow {
 	public boolean bBorrow() {
 		
 		// 대출가능여부 클래스 소환 !!!!!!!!!!!!!!!!!!!!!!!!
-		
+		bookCheck();
 		
 		//대출할 책 번호 입력받기
 		int bookInput;
