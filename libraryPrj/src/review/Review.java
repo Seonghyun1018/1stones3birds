@@ -80,7 +80,7 @@ public void bestBook() {
 	System.out.println("후기 내용을 입력 해주세요");
 	String content = util.Util.sc.nextLine();
 	Connection conn = oracledb.OracleDB.getOracleConnection();
-	String sql = " INSERT INTO REVIEW(RVNO,BNO,MNO,R_TITLE,REVIEWTEXT) VALUES(REVIEW_NO_SEQ.NEXTVAL,REVIEW_NO_SEQ.NEXTVAL,?,?,?)";
+	String sql = " INSERT INTO REVIEW(RVNO,BNO,MNO,R_TITLE,REVIEWTEXT) VALUES(REVIEW_NO_SEQ.NEXTVAL,1,?,?,?)";
 	
 	try {
 		PreparedStatement pstmt =conn.prepareStatement(sql);
@@ -90,7 +90,7 @@ public void bestBook() {
 		pstmt.setString(3, content);
 		int result = pstmt.executeUpdate();
 		if(result == 1) {
-			System.out.println("후기가 작성 되없습니다");
+			System.out.println("후기가 작성 되었습니다");
 		}else {
 			 System.out.println("후기작성이 실패 되었습니다");
 		}

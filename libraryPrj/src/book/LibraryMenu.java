@@ -29,7 +29,7 @@ public class LibraryMenu {
 			int n = Util.scInt();
 			
 			switch(n) {
-			case 0 : break;
+			case 0 : istrue = false; break;
 			case 1 : new BookSearch().bSearch(); break;
 			case 2 : new BookCategorySearch().cSearch(); break;//
 			case 3 : new BookBorrow().bookCheck(); break;

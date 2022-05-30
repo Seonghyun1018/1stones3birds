@@ -43,9 +43,9 @@ public class BookCategorySearch {
 					
 					//출력
 					while(rs.next()) {
-						int bno = rs.getInt("BNO");
-						String bname = rs.getString("BNAME");
-						int bcount = rs.getInt("BCOUNT");
+						int bno = rs.getInt("책번호");
+						String bname = rs.getString("책이름");
+						int bcount = rs.getInt("현재권수");
 						
 						System.out.print(bno);
 						System.out.print(" | ");
