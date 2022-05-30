@@ -4,13 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import oracledb.OracleDB;
+
 public class Penalty {
    
    public void penalty() {
       
 	System.out.println("대여하신 도서가 연체되었습니다.");
 	   
-   Connection conn = Oracle.getOracleConnection();
+   Connection conn = OracleDB.getOracleConnection();
    
    int mno = 1;
    String sql = "UPDATE MEMBER SET CANTBORROW = SYSDATE+7 WHERE =" + mno;
@@ -28,8 +30,8 @@ public class Penalty {
    } catch (SQLException e) {
       e.printStackTrace();
    }finally {
-	   Oracle.close(conn);
-		Oracle.close(pstmt);
+	   OracleDB.close(conn);
+	   OracleDB.close(pstmt);
    }
    
    }

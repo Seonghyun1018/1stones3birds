@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import oracledb.OracleDB;
+import util.Util;
+
 public class Extend {
 
 	//대출 연장
@@ -22,7 +25,7 @@ public class Extend {
 		ResultSet brs = null;
 		
 	try {
-		conn = Oracle.getOracleConnection();
+		conn = OracleDB.getOracleConnection();
 		
 		String bsql = "SELECT BWNO FROM BORROW WHERE BNO = " + bno + " AND MNO = " + mno;
 		
@@ -64,9 +67,9 @@ public class Extend {
 		} catch (SQLException e) {
 			System.out.println("SQL 오류 발생");
 		} finally {
-			Oracle.close(conn);
-			Oracle.close(pstmt);
-			Oracle.close(rs);
+			OracleDB.close(conn);
+			OracleDB.close(pstmt);
+			OracleDB.close(rs);
 		}
 		}
 		
