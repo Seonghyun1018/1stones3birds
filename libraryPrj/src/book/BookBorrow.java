@@ -6,12 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+import count.Count;
 import oracledb.OracleDB;
 import user.User;
 import util.Util;
 
 
 public class BookBorrow {
+	Count ct = new Count();
 	
 	// 도서 대출 -- 대출 테이블, 대출 시퀀스 테이블 작성
 	
@@ -139,6 +141,9 @@ public class BookBorrow {
 					
 					pstmt5 = conn.prepareStatement(sqlUpdate2);
 					pstmt5.executeUpdate();
+					
+					ct.countTest(bno);
+					//대출 시 읽은수 추가
 					
 					} 
 				}	
