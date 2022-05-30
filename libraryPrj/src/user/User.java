@@ -14,6 +14,7 @@ public class User {
 	
 	public static int loginNo;
 	public static String loginPwd;
+	public static boolean isLogin;
 	
 	//로그인==============================================================================================
 	public boolean login() {
@@ -45,6 +46,7 @@ public class User {
 					loginNo = no;
 					loginPwd = dbPwd;
 					System.out.println("로그인 성공 !!!");
+					isLogin = true;
 					return true;
 				}
 			}
@@ -264,25 +266,32 @@ public class User {
 	
 	//탈퇴=============================================================================================
 	public void userQuit() {
+		System.out.println("=====탈퇴하였습니다=====");
 		
-		boolean istrue = true;
 		
-		while(istrue) {
-			System.out.println("=====회원 탈퇴=====");
-			System.out.print("정말 탈퇴하시겠습니까?");
-			System.out.print("1. 예");
-			System.out.print("9. 아니오");
-			int n = Util.scInt();
+		//디비 연결 
+		Connection conn = OracleDB.getOracleConnection();
+		//아이디에 맞는 패스워드 디비에서 조회
+		
+		//관리자 화면 로그인도 할 수도 있음 컬럼명을 if로 나누기 처리하기
+		
+		String sql = "UPDATE MEMBER SET QUIT = 'Y' WHERE MNO = ?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, loginNo);
+			rs = pstmt.executeQuery();
 			
-			switch(n) {
-			case 1 : 
-				new User().myInfo(); break;
-			case 2 : istrue = false; break;
-			default : System.out.println("다시 선택하세요");
-			
-			
-			}
+			isLogin = false;
+		} catch (SQLException e) {
+			System.out.println("SQL 예외 발생 !!!");
+		}finally {
+			OracleDB.close(conn);
+			OracleDB.close(pstmt);
+			OracleDB.close(rs);
 		}
+		
 	}//탈퇴=============================================================================================
 
 }//class

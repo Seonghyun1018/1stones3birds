@@ -43,25 +43,36 @@ public class UserMenu {
 			System.out.println("2. 도서관이용");
 			System.out.println("3. 로그아웃");
 			
+			boolean isLogout = false;
 			
 			int n = Util.scInt();
 			
 			switch(n) {
 			case 1 : 
-				userAlterMenu(); break;
+				isLogout = userAlterMenu();  break;
 			case 2 : 
 				/*도서관기능 페이지 */break;
-			case 3 : istrue = false; User.loginNo=0; User.loginPwd=null; break;
+			case 3 : istrue = false; User.loginNo=0; User.loginPwd=null; User.isLogin = false; break;
 			default : System.out.println("다시 선택하세요");
+			
 			}
+			
+			if(isLogout) {
+				istrue = false;
+			}
+			
 		}//while
 	}//userMainMenu==========================================================================================
 	
 	//개인정보 수정 및 탈퇴화면====================================================================================
-	public void userAlterMenu() {
+	public boolean userAlterMenu() {
 		boolean istrue = true;
 		
+		
 		while(istrue) {
+			
+			boolean islogout = false;
+			
 			System.out.println("=====개인정보 수정 및 탈퇴=====");
 			System.out.println("1. 내정보조회");
 			System.out.println("2. 회원탈퇴");
@@ -74,11 +85,21 @@ public class UserMenu {
 			case 1 : 
 				new User().myInfo(); break;
 			case 2 : 
-				new User().askUserQuit(); break;
+				islogout = new User().askUserQuit(); break;
 			case 3 : istrue = false; break;
 			default : System.out.println("다시 선택하세요");
+			
 			}
+			
+			if(islogout) {
+				istrue = false;
+				return true;
+			}
+			
 		}//while
+		
+		return false;
+		
 	}//userAlterMenu============================================================================================
 	
 	
