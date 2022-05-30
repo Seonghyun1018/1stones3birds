@@ -13,6 +13,7 @@ import util.Util;
 
 
 public class BookBorrow {
+	public static int loginNo;
 	Count ct = new Count();
 	
 	// 도서 대출 -- 대출 테이블, 대출 시퀀스 테이블 작성
@@ -143,6 +144,8 @@ public class BookBorrow {
 					pstmt5.executeUpdate();
 					
 					ct.countTest(bno);
+					ct.memberCount(User.loginNo);
+					
 					//대출 시 읽은수 추가
 					
 					} 

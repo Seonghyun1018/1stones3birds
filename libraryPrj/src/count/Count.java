@@ -22,13 +22,13 @@ public class Count {
 			System.out.println("sql 쿼리 이상");
 		}
 }
-	public void memberCount(String inputName) {
+	public void memberCount(int loginNo) {
 		Connection	conn = OracleDB.getOracleConnection();
 		
-		String sql = "UPDATE MEMBER SET MCOUNT = MCOUNT+1 WHERE MNAME = ? ";
+		String sql = "UPDATE MEMBER SET MCOUNT = MCOUNT+1 WHERE MNO = ? ";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,inputName );
+			pstmt.setInt(1,loginNo );
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("sql 쿼리 이상");

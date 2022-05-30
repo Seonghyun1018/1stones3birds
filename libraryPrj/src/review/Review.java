@@ -5,9 +5,35 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import book.BookApply;
+import book.BookBorrow;
+import book.BookReturn;
+import book.BookSearch;
+import book.Extend;
+import book.Reserve;
+import user.User;
+import util.Util;
+
 
 public class Review {
 
+	public void reviewList() {
+		System.out.println("============ 후기==============");
+		System.out.println("1. 후기 작성");
+		System.out.println("2. 후기 보기");
+		
+		int n = Util.scInt();
+		
+		switch(n) {
+		case 0 : break;
+		case 1 : reviewWrite(); break;
+		case 2 :  revieList(); break;
+		
+		
+		default : System.out.println("다시 선택하세요");
+	}
+	}
+	
 public void bestBook() {
 		
 		Connection conn = oracledb.OracleDB.getOracleConnection();
@@ -34,9 +60,9 @@ public void bestBook() {
 			  
 			 
 				System.out.print(bookName);
-				
+				System.out.print("  |  ");
 				System.out.print(rentCount);
-					
+				System.out.print("  |  ");
 				System.out.println(rank);
 				
 				
@@ -54,12 +80,14 @@ public void bestBook() {
 	System.out.println("후기 내용을 입력 해주세요");
 	String content = util.Util.sc.nextLine();
 	Connection conn = oracledb.OracleDB.getOracleConnection();
-	String sql = " INSERT INTO REVIEW(RVNO,R_TITLE,REVIEWTEXT) VALUES(REVIEW_NO_SEQ.NEXTVAL,?,?)";
+	String sql = " INSERT INTO REVIEW(RVNO,BNO,MNO,R_TITLE,REVIEWTEXT) VALUES(REVIEW_NO_SEQ.NEXTVAL,REVIEW_NO_SEQ.NEXTVAL,?,?,?)";
 	
 	try {
 		PreparedStatement pstmt =conn.prepareStatement(sql);
-		pstmt.setString(1, title);
-		pstmt.setString(2, content);
+		
+		pstmt.setInt(1, User.loginNo);
+		pstmt.setString(2, title);
+		pstmt.setString(3, content);
 		int result = pstmt.executeUpdate();
 		if(result == 1) {
 			System.out.println("후기가 작성 되없습니다");
@@ -125,6 +153,46 @@ public void bestBook() {
 		}
 		
 		
+	}
+public void bestKing() {
+		
+		Connection conn = oracledb.OracleDB.getOracleConnection();
+		String sql2 ="SELECT MNAME,MCOUNT,	DENSE_RANK() OVER (ORDER BY MCOUNT DESC) DENSE_RANK FROM MEMBER";
+	//	SELECT BNAME,RENT_COUNT,	DENSE_RANK() OVER (ORDER BY RENT_COUNT DESC) DENSE_RANK FROM BOOK
+		System.out.print("이름");
+		System.out.print("  |  ");
+		System.out.print("독서수");
+		System.out.print("  |  ");
+		System.out.println("순위");
+		
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql2);
+			
+			
+			ResultSet rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				
+				String MName = rs.getString("MNAME");
+				int MCount = rs.getInt("MCOUNT");
+				int rank = rs.getInt("DENSE_RANK");
+			  
+			 
+				System.out.print(MName);
+				System.out.print("  |  ");
+				System.out.print(MCount);
+				System.out.print("  |  ");
+				System.out.println(rank);
+				
+				
+			
+				
+				
+			}
+		} catch (SQLException e) {
+		
+		}
 	}
 	
 	
