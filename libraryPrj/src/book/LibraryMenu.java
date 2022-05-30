@@ -32,7 +32,7 @@ public class LibraryMenu {
 			case 0 : break;
 			case 1 : new BookSearch().bSearch(); break;
 			case 2 : new BookCategorySearch().cSearch(); break;//
-			case 3 : new BookBorrow().bBorrow(); break;
+			case 3 : new BookBorrow().bookCheck(); break;
 			case 4 : new BookReturn().bReturn(); break;
 			case 5 : new Extend().isExtend(); break;
 			case 6 : new Reserve().searchBook(); break;

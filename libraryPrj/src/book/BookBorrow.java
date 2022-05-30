@@ -33,6 +33,7 @@ public class BookBorrow {
 					System.out.println("현재 대출이 불가능한 상태 입니다");
 				}else {
 				System.out.println("현재 대출 가능한 상태 입니다");
+				bBorrow();
 				}
 			}
 		} catch (SQLException e) {
@@ -59,9 +60,6 @@ public class BookBorrow {
 		// 책 현재 권수, 회원 대출가능권수 -1
 	
 	public boolean bBorrow() {
-		
-		// 대출가능여부 클래스 소환 !!!!!!!!!!!!!!!!!!!!!!!!
-		bookCheck();
 		
 		//대출할 책 번호 입력받기
 		int bookInput;
