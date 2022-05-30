@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import oracledb.OracleDB;
+import user.User;
 import util.Util;
 
 
@@ -71,7 +72,7 @@ public class BookBorrow {
 				
 			} else {
 				//대출 테이블에 중복 책 조회
-				int mno = 1; 				//회원번호 수정!!!!!!!!!!!!!!!!!!!!!!!!!
+				int mno = User.loginNo; 				//회원번호 수정!!!!!!!!!!!!!!!!!!!!!!!!!
 				
 				String bsql = "SELECT RDATE FROM BORROW WHERE BNO = " + bookInput + "AND MNO = " + mno;
 				

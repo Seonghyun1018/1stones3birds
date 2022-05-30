@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import oracledb.OracleDB;
+import user.User;
 
 public class Penalty {
    
@@ -14,7 +15,7 @@ public class Penalty {
 	   
    Connection conn = OracleDB.getOracleConnection();
    
-   int mno = 1;
+   int mno = User.loginNo;
    String sql = "UPDATE MEMBER SET CANTBORROW = SYSDATE+7 WHERE =" + mno;
    
    PreparedStatement pstmt = null;
