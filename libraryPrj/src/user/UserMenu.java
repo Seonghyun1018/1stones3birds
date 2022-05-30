@@ -1,5 +1,6 @@
 package user;
 
+import book.LibraryMenu;
 import util.Util;
 
 public class UserMenu {
@@ -51,7 +52,7 @@ public class UserMenu {
 			case 1 : 
 				isLogout = userAlterMenu();  break;
 			case 2 : 
-				/*도서관기능 페이지 */break;
+				new LibraryMenu().Library(); break;
 			case 3 : istrue = false; User.loginNo=0; User.loginPwd=null; User.isLogin = false; break;
 			default : System.out.println("다시 선택하세요");
 			

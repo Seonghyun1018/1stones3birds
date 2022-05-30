@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+
+import oracledb.OracleDB;
+import util.Util;
 
 public class Reserve {
 	
@@ -19,7 +21,7 @@ public class Reserve {
 			String sql = "SELECT * FROM BOOK WHERE BCOUNT > 0";
 			
 			try {
-				conn = Oracle.getOracleConnection();
+				conn = OracleDB.getOracleConnection();
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 
@@ -55,15 +57,17 @@ public class Reserve {
 			} catch (SQLException e) {
 				System.out.println("도서 목록 조회 오류");
 			} finally {
-				Oracle.close(conn);
-				Oracle.close(pstmt);
-				Oracle.close(rs);
+				OracleDB.close(conn);
+				OracleDB.close(pstmt);
+				OracleDB.close(rs);
 			}
 			}
 
 		
 			//도서 검색-> 예약하기
 			public void searchBook() {
+				
+				showBookList();
 				
 				Connection conn = null;
 				PreparedStatement pstmt1 = null;
@@ -78,7 +82,7 @@ public class Reserve {
 				try {
 					sql = "SELECT BNO FROM BOOK WHERE BNAME = ?";
 					
-					conn = Oracle.getOracleConnection();
+					conn = OracleDB.getOracleConnection();
 					pstmt1 = conn.prepareStatement(sql);
 					pstmt1.setNString(1,bname);
 					rs1 = pstmt1.executeQuery();
@@ -105,11 +109,11 @@ public class Reserve {
 					} catch (SQLException e) {
 					e.printStackTrace();
 				}finally{
-					Oracle.close(conn);
-					Oracle.close(pstmt1);
-					Oracle.close(pstmt2);
-					Oracle.close(rs1);
-					Oracle.close(rs2);
+					OracleDB.close(conn);
+					OracleDB.close(pstmt1);
+					OracleDB.close(pstmt2);
+					OracleDB.close(rs1);
+					OracleDB.close(rs2);
 				}
 
 			}
