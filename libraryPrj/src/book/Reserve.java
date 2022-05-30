@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import oracledb.OracleDB;
+import user.User;
 import util.Util;
 
 public class Reserve {
@@ -65,7 +66,7 @@ public class Reserve {
 
 		
 			//도서 검색-> 예약하기
-			public void searchBook() {
+			public boolean searchBook() {
 				
 				showBookList();
 				
@@ -73,7 +74,6 @@ public class Reserve {
 				PreparedStatement pstmt1 = null;
 				PreparedStatement pstmt2 = null;
 				ResultSet rs1 = null;
-				ResultSet rs2 = null;
 				String sql = null;
 				
 				System.out.print("책 제목을 입력하시오 : ");
@@ -91,19 +91,28 @@ public class Reserve {
 					if(rs1.next()) {
 						int bno = rs1.getInt("BNO");
 						System.out.println("검색하신 책을 찾았습니다!");
-						System.out.println(bname+ " 을(를) 예약하시겠습니까? (Y / N)");
-						String anser = Util.sc.nextLine();
+						System.out.println(bname+ " 을(를) 예약하시겠습니까? 1. 예");
 						
-						if (anser.equalsIgnoreCase("Y")) {
+						
+						
+						int mno = User.loginNo;
+						
+						int anser = Util.scInt();
+						
+						if (anser == 1) {
 							
-							String reserve = "INSERT INTO RESERVE(RESERVENO,MNO,BNO,RESERVEDATE) VALUES (RESERVE_NO_SEQ.NEXTVAL, 1, "+ bno +", SYSDATE)"; 
+							String reserve = "INSERT INTO RESERVE(RESERVENO,MNO,BNO,RESERVEDATE) VALUES (RESERVE_NO_SEQ.NEXTVAL," + mno +" , "+ bno +", SYSDATE)"; 
 							pstmt2 = conn.prepareStatement(reserve);
-							rs2 = pstmt2.executeQuery();
-							System.out.println("예약이 완료되었습니다.");
+							int rs2 = pstmt2.executeUpdate();
 							
-					} else if (anser.equalsIgnoreCase("N")) {
+							if (rs2 == 1) { 
+							System.out.println("예약이 완료되었습니다.");
+							return true;
+							}
+							
+					} else {
 						System.out.println("예약이 취소되었습니다.");
-					return; 
+						return false;  
 					}
 					}
 					} catch (SQLException e) {
@@ -113,8 +122,9 @@ public class Reserve {
 					OracleDB.close(pstmt1);
 					OracleDB.close(pstmt2);
 					OracleDB.close(rs1);
-					OracleDB.close(rs2);
 				}
+				
+				return false;
 
 			}
 } 

@@ -16,7 +16,8 @@ public class Penalty {
    Connection conn = OracleDB.getOracleConnection();
    
    int mno = User.loginNo;
-   String sql = "UPDATE MEMBER SET CANTBORROW = SYSDATE+7 WHERE =" + mno;
+   
+   String sql = "UPDATE MEMBER SET CANTBORROW = SYSDATE+7 WHERE MNO = " + mno;
    
    PreparedStatement pstmt = null;
    
