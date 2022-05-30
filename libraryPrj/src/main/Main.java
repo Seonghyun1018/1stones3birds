@@ -26,7 +26,7 @@ public class Main {
 		
 		switch(n) {
 		case 1 :  new UserMenu().userLoginMenu(); break;
-		case 2 :  new Admin().admLogin();break;
+		case 2 :  new Admin().admLogin(); break;
 		case 3 : isTrue = false; break; 
 		default : System.out.println("시스템종료");
 		}
