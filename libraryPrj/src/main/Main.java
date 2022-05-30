@@ -1,7 +1,8 @@
 package main;
 
 
-//import Person.Member;
+import admin.Admin;
+import user.UserMenu;
 import util.Util;
 
 public class Main {
@@ -21,9 +22,11 @@ public class Main {
 		
 		int n = Util.scInt();
 		
+		//케이스 추가할 거 있으면 case 4,5,6..... 클래스명().메소명(); break; 추가
+		
 		switch(n) {
 		case 1 :  new UserMenu().userLoginMenu(); break;
-		case 2 :  break;
+		case 2 :  new Admin().admLogin();break;
 		case 3 : isTrue = false; break; 
 		default : System.out.println("시스템종료");
 		}
