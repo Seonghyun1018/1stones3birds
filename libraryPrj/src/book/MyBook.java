@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import oracledb.OracleDB;
+import user.User;
 
 
 public class MyBook {
@@ -21,7 +22,7 @@ public class MyBook {
 	public void MBook() {
 		
 		//회원번호 수정 !!!!!!!!!!!!!!!!
-		int mno = 1;
+		int mno = User.loginNo;
 		
 		Connection conn = OracleDB.getOracleConnection();
 		

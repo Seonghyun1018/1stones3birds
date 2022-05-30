@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import oracledb.OracleDB;
+import user.User;
 import util.Util;
 
 
@@ -47,7 +48,7 @@ public class BookReturn {
 		Connection conn = OracleDB.getOracleConnection();
 		
 		// 회원번호 받기 !!!!!!!!!!!!!!!!!!!!!!!!!!!
-		int mno = 1;
+		int mno = User.loginNo;
 		
 		// 책번호,회원번호가 일치하고 RDATE가 null인 데이터 가져오기
 		String sql = "SELECT BWNO FROM BORROW WHERE RDATE IS NULL AND BNO = " + bookInput + "AND MNO = " + mno;
@@ -80,8 +81,8 @@ public class BookReturn {
 				if (today.after(deadline)) {
 					
 					//페널티 클래스 호출 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-					System.out.println("페널티가 호출되었음");					
-					
+					new Penalty().penalty();
+								
 				} else {
 					System.out.println("반납이 가능합니다.");
 				}

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import oracledb.OracleDB;
+import user.User;
 import util.Util;
 
 public class Extend {
@@ -16,7 +17,7 @@ public class Extend {
 		System.out.println("대출 기한을 연장할 책의 번호를 입력해주세요.");
 		
 		int bno = Util.sc.nextInt();
-		int mno = 1; /////회원번호 수정!!!!!!!
+		int mno = User.loginNo; /////회원번호 수정!!!!!!!
 				
 		Connection conn = null; 
 		PreparedStatement pstmt = null;
