@@ -13,7 +13,10 @@ public class Admin{
 	
 	public static int loginAdmNo;
 	public static String loginAdmPwd;
-    
+	public static boolean isLogin;
+	
+	AdminAccess aa = new AdminAccess();
+	
 	//도서관 관리자
 	
 	//관리자 기능 
@@ -30,7 +33,8 @@ public class Admin{
 	 //if PARTTIMER / 원용직 이라면
 
 	
-	public boolean admLogin() {
+	public void admLogin() {
+//		AdminAccess aa = new AdminAccess();
 		System.out.println("=====관리자 로그인=====");
 		System.out.print("아이디 : ");
 		String aid = Util.sc.nextLine();
@@ -40,7 +44,7 @@ public class Admin{
 		// 데이터베이스 연결 
     	Connection conn = OracleDB.getOracleConnection();
     	// ADMIN 계정 확인
-    	String sql = "SELECT ANO, AID, APWD FROM ADMIN WHERE ANAME =  ? ";
+    	String sql = "SELECT ANO, APWD FROM ADMIN WHERE AID =  ? ";
     					
 	    // 전송
 		PreparedStatement pstmt = null;
@@ -59,23 +63,62 @@ public class Admin{
 					loginAdmNo = no;
 					loginAdmPwd = dbPwd;
 					System.out.println(" ****접속 완료**** ");
-					return true;
+					//isLogin = true;
+				
+					
 				}
 			}
 		} catch (SQLException e) {
 			System.out.println(" SQL 예외 발생 ");
 			e.printStackTrace();
+			System.out.println(" ----접속 실패---- ");
 		}finally {
 			OracleDB.close(conn);
 			OracleDB.close(pstmt);
 			OracleDB.close(rs);
 		}
-		System.out.println(" ----접속 실패---- ");
-		return false;
-
-
 	
+
+		adminMenu();
+		
 }
+	
+public void adminMenu() {	
+	
+	
+		
+		boolean isTrue = true;
+		
+		
+		// 1. 관리자 로그인 하기 while + switch
+		
+		
+		
+		while(isTrue){
+			 System.out.println("--------------------------------------------------------");
+		     System.out.println("\t 관리자 시스템 시작");
+		     System.out.println("--------------------------------------------------------");
+		     System.out.println("원하는 번호를 입력해주세요. : \n");
+		     System.out.println(" 1 -  도서 추가");
+		     System.out.println(" 2 -  회원 삭제");
+		     System.out.println(" 3 -  뒤로 기기"); //어드민한테만 액세스 권한 가짐 일반회원 X  
+		     System.out.println("-----------------------------------------\n");
+		     
+		     int n = Util.scInt();
+				
+				//케이스 추가할 거 있으면 case 4,5,6..... 클래스명().메소명(); break; 추가
+				
+				switch(n) {
+				case 1 :  break;
+				case 2 :  break;
+				case 3 :  break; 
+				default : System.out.println("시스템종료");
+				}
+		     
+				bookInsert();
+}	     
+}	     
+
 
  
     
@@ -87,7 +130,7 @@ public class Admin{
 		
 		while(istrue) {
 			System.out.println("=====회원 삭제=====");
-			System.out.print("정말 탈퇴하시겠습니까?");
+			System.out.print("정말 삭제하시겠습니까?");
 			System.out.print("1. 예 ");
 			System.out.print("2. 아니오 ");
 			
