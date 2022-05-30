@@ -105,7 +105,7 @@ public class Admin{
        
          //도서 상태 INSERT DELETE UPDATE
         // 1. 도서 추가
-      	public void bookInsert() {
+      	public int bookInsert() {
        		Connection conn = OracleDB.getOracleConnection();
         	// INSERT 
        		String sql
@@ -117,10 +117,10 @@ public class Admin{
     		
     		try {
     			PreparedStatement pstmt2 = conn.prepareStatement(sql);
-    			pstmt2.setString(1, "BNO");
-    			pstmt2.setString(2, "BCOUNT");
-    			pstmt2.setString(3, "BUYDATE");
-    			pstmt2.setString(4, "RENT_COUNT");
+    			pstmt2.setString(1, BNAME);
+    			pstmt2.setString(2, BCOUNT);
+    			pstmt2.setString(3, BUYDATE);
+    			pstmt2.setString(4, RENT_COUNT);
     			int result = pstmt2.executeUpdate();
     			
     			
@@ -128,8 +128,6 @@ public class Admin{
     			e.printStackTrace();
     		} finally {
     			close(pstmt);
-    			close(rs);
-    			close(conn);
     		}
     		
     		
@@ -142,28 +140,8 @@ public class Admin{
 
 
 
-		private void close(Connection conn) {
-			
-		}
-
-
-
-		private void close(ResultSet rs) {
-			
-			
-		}
-
-
-
-		private void close(PreparedStatement pstmt) {
-			
-			
-		}
-
-
-
 		// 3. 도서 정보 삭제
-       	public void bookDelete() {
+       	public int bookDelete() {
        		Connection conn = OracleDB.getOracleConnection();
         	// DELETE
         	String sql = "INSERT ANO, APWD FROM ADMIN WHERE AID = ?";
@@ -174,18 +152,18 @@ public class Admin{
        	}
 
      
-//       	
-//       	// 4. 도서 조회
-//       	public void bookInfo() {
-//       		Connection conn = getConnection();
-//       		
-//       		Book book = bd.bookSelectId(conn, bookId);
-//       		
-//       		close(conn);
-//       		
-//       		return book;
-//       	}
-//       	
+       	
+       	// 4. 도서 조회
+       	public void bookInfo() {
+       		Connection conn = getConnection();
+       		
+       		Book book = bd.bookSelectId(conn, bookId);
+       		
+       		close(conn);
+       		
+       		return book;
+       	}
+       	
       
     	
   
