@@ -9,7 +9,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		System.out.println(" 원용의 서재 "); //여기도... 좋은 의견 부탁드립니다.. 
+		System.out.println(" 원용의 서재  "); //여기도... 좋은 의견 부탁드립니다.. 
 
 		
 		boolean isTrue = true;

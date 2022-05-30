@@ -171,7 +171,7 @@ public class BookBorrow {
 					
 					ct.countTest(bno);
 					ct.memberCount(User.loginNo);
-					
+					//
 					//대출 시 읽은수 추가
 					
 					} 
