@@ -185,7 +185,7 @@ public class User {
 			pstmt.setInt(1, loginNo);
 			rs = pstmt.executeQuery();
 			rs.next();
-			
+		
 			String dbName = rs.getString("MNAME");
 			String dbId = rs.getString("MID");
 			String dbPwd = "********";

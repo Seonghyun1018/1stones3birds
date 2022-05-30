@@ -1,5 +1,6 @@
 package book;
 
+import review.Review;
 import util.Util;
 
 public class LibraryMenu {
@@ -17,6 +18,9 @@ public class LibraryMenu {
 			System.out.println("4. 대출 연장");
 			System.out.println("5. 도서 예약");
 			System.out.println("6. 도서 신청");
+			System.out.println("7.이달의 독서순위");
+			System.out.println("8. 도서 후기 작성");
+			
 			
 			boolean isLogout = false;
 			
@@ -30,6 +34,8 @@ public class LibraryMenu {
 			case 4 : new Extend().isExtend(); break;
 			case 5 : new Reserve().searchBook(); break;
 			case 6 : new BookApply().bApply(); break;
+			case 7 : new Review().bestBook(); break;
+			case 8 : new Review().reviewList(); break;
 			
 			default : System.out.println("다시 선택하세요");
 			
