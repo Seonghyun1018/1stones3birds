@@ -67,7 +67,7 @@ public class AdminAccess {
     
     //회원 정보 조회 User().myInfo().
     
-     if (.equals("정보 조회")) { 
+     //if ()//(equals("정보 조회")) { 
     	
 	   while (true) {
 		   
@@ -87,8 +87,8 @@ public class AdminAccess {
                               	
 }
 	   
-}
-     (admin().Admin().equals("AID")){ //알바생 아이디,닉네임, 등등 + 패스워드 입력
+
+ //    (admin().Admin().equals("AID")){ //알바생 아이디,닉네임, 등등 + 패스워드 입력
     	
     	
     	while(true) {
@@ -114,7 +114,7 @@ public class AdminAccess {
 //                break;
                               
 }                    
-}
+//}
     
 //     	().equals("AID")){ 
     	
@@ -143,11 +143,11 @@ public class AdminAccess {
             
             
         }                    
+    	System.out.println("\n아무키 입력\n"); //ex 계속하려면 아무 키나 누르십시오.
     }
           
 
 	
-	System.out.println("\n아무키 입력\n"); //ex 계속하려면 아무 키나 누르십시오.
 
 	
 
@@ -164,10 +164,4 @@ public class AdminAccess {
 
 
             
-            
-
-            
-                            
-
-
-}                    
+                          
