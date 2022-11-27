@@ -24,7 +24,7 @@ public class BookCategorySearch {
 			
 			//책번호, 책이름, 현재권수 받아오기
 			//String sql = "SELECT BNO, BNAME, BCOUNT FROM BOOK WHERE BNAME LIKE '%" + bookInput + "%'";
-			String sql = "SELECT BNO,BNAME, BCOUNT FROM BOOKVIEW WHERE 장르 LIKE '%" + bookInput + "%'";
+			String sql = "SELECT 책번호, 책이름, 현재권수 FROM BOOKVIEW WHERE 장르 LIKE '%" + bookInput + "%'";
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
@@ -43,9 +43,9 @@ public class BookCategorySearch {
 					
 					//출력
 					while(rs.next()) {
-						int bno = rs.getInt("BNO");
-						String bname = rs.getString("BNAME");
-						int bcount = rs.getInt("BCOUNT");
+						int bno = rs.getInt("책번호");
+						String bname = rs.getString("책이름");
+						int bcount = rs.getInt("현재권수");
 						
 						System.out.print(bno);
 						System.out.print(" | ");
